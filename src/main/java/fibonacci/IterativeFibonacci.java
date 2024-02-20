@@ -6,19 +6,20 @@ public class IterativeFibonacci {
      * O(n) - оскільки маємо цикл,
      * який виконує н операцій. У циклі прості операції
      * які не впливають на загальну складність. Використовується
-     * звичайний масив замість колекцій, тому економимо память.
+     * звичайні примітиви для збереження значень, що доволі економно по памяті.
      */
     public static long fibonacci(int n){
         if (n <= 1) return n;
 
-        long[] fibonacciArray = new long[n + 1];
-        fibonacciArray[0] = 0;
-        fibonacciArray[1] = 1;
+        long prev1 = 0;
+        long prev2 = 1;
+        long result = 0;
 
-        for(int i = 2; i <= n; ++i) {
-            fibonacciArray[i] = fibonacciArray[i - 1] + fibonacciArray[i - 2];
+        for (int i = 2; i <= n; i++) {
+            result = prev1 + prev2;
+            prev1 = prev2;
+            prev2 = result;
         }
-
-        return fibonacciArray[n];
+        return result;
     }
 }
